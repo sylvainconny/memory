@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  # Base de données
+  memorydb:
+    image: mariadb:latest
+    volumes:
+      - db_data:/var/lib/mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: mdbrootpwdexample
+      MARIADB_DATABASE: memory
+      MARIADB_USER: memory
+      MARIADB_PASSWORD: m0t2p@ssef0rt
+    networks:
+      - memorysite
+  # Serveur PHP
+  memoryphp:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - memorydb
+    links:
+      - memorydb
+    image: php:8.0-apache
+    ports:
+      - "8000:80"
+    restart: always
+    volumes: [php_data:/var/www/html, "./:/var/www/html"]
+    environment:
+      DB_HOST: memorydb:3306
+      DB_DATABASE: memory
+      DB_USER: memory
+      DB_PASSWORD: m0t2p@ssef0rt
+    networks:
+      - memorysite
+networks:
+  memorysite:
+volumes:
+  db_data:
+  php_data:
