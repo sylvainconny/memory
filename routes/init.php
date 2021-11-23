@@ -6,7 +6,7 @@
 
 require_once __CLASSES__ . '/TempsDeJeu.php';
 
-
+// pdo et router sont des variables globales
 $router->ajouterRoute('/init', function ($_, Response $res) use ($pdo) {
   try {
     $tempsDeJeu = new TempsDeJeu($pdo);
