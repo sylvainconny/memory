@@ -27,4 +27,9 @@ class Request
   {
     return $this->server('REQUEST_METHOD');
   }
+
+  public function route()
+  {
+    return $this->server('REQUEST_URI');
+  }
 }

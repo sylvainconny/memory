@@ -1,0 +1,13 @@
+{% extends "layout.html.twig" %}
+
+{% block contenu %}
+	<section class="d-flex min-vh-100 justify-content-center align-items-center">
+		<div>
+			<h1 class="text-danger">{{ title }}</h1>
+			<p class="m-0">
+				Retourner à la
+				<a href="http://{{ constant('SERVER_URL') }}>">page d'accueil</a>
+			</p>
+		</div>
+	</section>
+{% endblock %}
