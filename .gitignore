@@ -1,3 +1,5 @@
 .DS_Store
 vendor/
 cache/
+node_modules/
+dist/

@@ -7,6 +7,7 @@ $router->ajouterRoute('/temps-de-jeu', function (Request $req, Response $res) us
    * Instanciations des objets de la page
    */
   $tempsDeJeu = new TempsDeJeu($pdo);
+
   /**
    * Essaie d'exécuter la réponse
    */

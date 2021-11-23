@@ -1,7 +1,9 @@
 {% extends "layout.html.twig" %}
 
 {% block contenu %}
-	<section class="d-flex min-vh-100 justify-content-center align-items-center">
-		Hello World!
-	</section>
+	<div id="app"></div>
+{% endblock %}
+
+{% block scripts %}
+	<script src="/app/dist/bundle.js"></script>
 {% endblock %}
