@@ -12,8 +12,21 @@
 <main>
   <div>
     Précédents temps de jeu
-    {#each tempsDeJeu as tps}
-      <p>{tps}</p>
-    {/each}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Temps</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {#each tempsDeJeu as tps}
+          <tr>
+            <td>{tps.temps_realise} secondes</td>
+            <td>{new Date(tps.date_partie).toLocaleDateString()}</td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
   </div>
 </main>
