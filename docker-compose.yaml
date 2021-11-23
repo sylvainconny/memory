@@ -27,7 +27,7 @@ services:
     ports:
       - "8000:80"
     restart: always
-    volumes: [php_data:/var/www/html, "./:/var/www/html"]
+    volumes: ["./:/var/www/html"]
     environment:
       DB_HOST: memorydb:3306
       DB_DATABASE: memory
