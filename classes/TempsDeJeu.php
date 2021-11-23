@@ -26,7 +26,7 @@ class TempsDeJeu
   {
     $liste = $this->pdo->prepare('SELECT * FROM temps_de_jeu ORDER BY temps_realise DESC;');
     $liste->execute();
-    return $liste->fetchAll(PDO::FETCH_COLUMN);
+    return $liste->fetchAll(PDO::FETCH_OBJ);
   }
 
   public function ajouter(int $temps_realise)
