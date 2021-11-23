@@ -25,12 +25,19 @@ try {
    */
   if ($err->getCode() == '42S02') {
     include __ROUTES__ . '/init.php';
+    exit;
   }
-  // sinon afficher la page d'erreur
+  /**
+   * Sinon afficher la page d'erreur
+   */
   include __ROUTES__ . '/erreur.php';
-} catch (Error $err) {
-  // si l'erreur ne vient pas de la base
+  exit;
+} catch (Throwable $err) {
+  /**
+   * si l'erreur ne vient pas de la base
+   */
   include __ROUTES__ . '/erreur.php';
+  exit;
 }
 
 

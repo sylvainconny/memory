@@ -12,5 +12,22 @@ if (isset($err) and !empty($err)) {
   $message_erreur = "Pas d'erreur";
   $code_erreur = 0;
 }
-include __TEMPLATES__ . '/erreur.php';
-exit;
+
+$head_title = "Erreur {$code_erreur}";
+
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<?php include __TEMPLATES__ . '/head.php'; ?>
+
+<body>
+  <section class="d-flex min-vh-100 justify-content-center align-items-center">
+    <div class="alert alert-danger">
+      <h1><?= $head_title ?></h1>
+      <?= $message_erreur ?>
+    </div>
+  </section>
+</body>
+
+</html>
