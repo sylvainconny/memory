@@ -10,8 +10,6 @@ require_once __DIR__ . '/const.php';
 // inclusion de $pdo
 require_once __CONF__ . '/db.php';
 
-//print '<pre>' . print_r($_SERVER, true) . '</pre>';
-
 /**
  * Exécution d'une requête simple sur la base de données
  * pour vérifier l'existance de la table temps_de_jeu
@@ -53,6 +51,9 @@ $route = filter_input(INPUT_SERVER, 'REQUEST_URI');
 switch ($route) {
   case '/':       // accueil
     echo 'Hello World';
+    break;
+  case '/ajouter-temps':
+    include __ROUTES__ . '/ajouter-temps.php';
     break;
   default:        // page inexistante
     include __ROUTES__ . '/404.php';
