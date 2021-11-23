@@ -33,6 +33,7 @@ services:
       DB_DATABASE: memory
       DB_USER: memory
       DB_PASSWORD: m0t2p@ssef0rt
+      SERVER_URL: localhost:8000
     networks:
       - memorysite
 networks:
