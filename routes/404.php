@@ -5,7 +5,9 @@
  * qu'il s'agit d'une erreur 404, que la page
  * recherchée n'existe pas.
  */
-header('HTTP/1.0 404 Not Found');
+require_once __CLASSES__ . '/Response.php';
+$response = new Response();
+$response->notFound(false);
 
 $head_title = '404: Page inexistante';
 ?>

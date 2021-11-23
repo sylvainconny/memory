@@ -4,15 +4,13 @@
  * Création de la table qui enregistrera les temps de jeu
  */
 
+require_once __CLASSES__ . '/TempsDeJeu.php';
+
 try {
-  $pdo->exec("CREATE TABLE IF NOT EXISTS temps_de_jeu (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    temps_realise INT NOT NULL,
-    date_partie TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
-  ) CHARACTER SET utf8 COLLATE utf8_general_ci");
+  $tempsDeJeu = new TempsDeJeu($pdo);
+  $tempsDeJeu->creerTable();
 } catch (Throwable $err) {
-  include __ROUTES__ . '/erreur.php';
-  exit;
+  include __TEMPLATES__ . '/erreur.php';
 }
 
 $head_title = 'Base de données initialisée';

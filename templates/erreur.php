@@ -31,3 +31,10 @@ $head_title = "Erreur {$code_erreur}";
 </body>
 
 </html>
+
+<?php
+/**
+ * Clôture la page
+ */
+exit;
+?>

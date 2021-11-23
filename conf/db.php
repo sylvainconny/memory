@@ -16,9 +16,13 @@ define('DB_PASSWORD', filter_input(INPUT_ENV, 'DB_PASSWORD'));
  * scripts php, on pourra accéder à cette variable et donc à la
  * base de données.
  */
-$pdo = new PDO(
-  'mysql:host=' . DB_HOST . ';dbname=' . DB_DATABASE,
-  DB_USER,
-  DB_PASSWORD,
-  [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']
-);
+try {
+  $pdo = new PDO(
+    'mysql:host=' . DB_HOST . ';dbname=' . DB_DATABASE,
+    DB_USER,
+    DB_PASSWORD,
+    [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']
+  );
+} catch (Throwable $err) {
+  include __TEMPLATES__ . '/erreur.php';
+}

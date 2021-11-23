@@ -6,6 +6,7 @@
  */
 define('__ROOT__', dirname(__DIR__));
 define('__CONF__', __ROOT__ . '/conf');
+define('__CLASSES__', __ROOT__ . '/classes');
 define('__ROUTES__', __ROOT__ . '/routes');
 define('__TEMPLATES__', __ROOT__ . '/templates');
 define('SERVER_URL', filter_input(INPUT_ENV, 'SERVER_URL'));

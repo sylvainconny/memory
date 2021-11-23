@@ -15,27 +15,26 @@ require_once __CONF__ . '/db.php';
  * pour vérifier l'existance de la table temps_de_jeu
  */
 try {
-  $pdo->exec('SELECT * FROM temps_de_jeu LIMIT 0, 1');
+  $requeteTest = $pdo->prepare('SELECT * FROM temps_de_jeu LIMIT 0, 1');
+  $requeteTest->execute();
 } catch (PDOException $err) {
   /**
    * Si le code d'erreur est 42S02, c'est que la table
    * n'existe pas, on initialisera la table
    */
   if ($err->getCode() == '42S02') {
-    include __ROUTES__ . '/init.php';
+    include __TEMPLATES__ . '/init.php';
     exit;
   }
   /**
    * Sinon afficher la page d'erreur
    */
-  include __ROUTES__ . '/erreur.php';
-  exit;
+  include __TEMPLATES__ . '/erreur.php';
 } catch (Throwable $err) {
   /**
    * si l'erreur ne vient pas de la base
    */
-  include __ROUTES__ . '/erreur.php';
-  exit;
+  include __TEMPLATES__ . '/erreur.php';
 }
 
 
@@ -52,8 +51,8 @@ switch ($route) {
   case '/':       // accueil
     echo 'Hello World';
     break;
-  case '/ajouter-temps':
-    include __ROUTES__ . '/ajouter-temps.php';
+  case '/temps-de-jeu':
+    include __ROUTES__ . '/temps-de-jeu.php';
     break;
   default:        // page inexistante
     include __ROUTES__ . '/404.php';
