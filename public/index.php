@@ -27,6 +27,7 @@ $router = new Router();
 /**
  * Chargement des routes
  */
+require_once __ROUTES__ . '/accueil.php';
 require_once __ROUTES__ . '/init.php';
 require_once __ROUTES__ . '/temps-de-jeu.php';
 
