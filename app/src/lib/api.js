@@ -4,12 +4,22 @@ export default class Api {
     this.apiUrl = apiUrl;
   }
 
-  async getTempsDeJeu() {
+  /**
+   * Liste les temps de jeu
+   * Fait appel à la base de données
+   * via les scripts php
+   */
+  async listeTempsDeJeu() {
     const res = await fetch(`${this.apiUrl}/temps-de-jeu`);
     return await res.json();
   }
 
-  async setTempsDeJeu(temps_realise) {
+  /**
+   * Ajouter un temps de jeu
+   * Écrit dans la base de données
+   * via les scripts php
+   */
+  async ajouterTempsDeJeu(temps_realise) {
     return await fetch(`${this.apiUrl}/temps-de-jeu`, {
       method: "POST",
       headers: {

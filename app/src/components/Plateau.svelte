@@ -25,7 +25,7 @@
       const statut = jeu.verifierStatut();
       if (statut.gagne) {
         dispatch("gagne", {
-          temps: 200,
+          temps_realise: 200,
         });
       }
       if (statut.perdu) {

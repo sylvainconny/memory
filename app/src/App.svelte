@@ -4,18 +4,35 @@
   import Menu from "./components/Menu.svelte";
   import { fruits } from "./lib/fruits";
   import Jeu from "./lib/jeu";
+  import Api from "./lib/api";
 
   export let apiUrl;
   let afficherTemps = true;
   let jeu;
   let tempsDeJeu;
 
+  const api = new Api(apiUrl);
+
+  /**
+   * Au démarrage de l'application,
+   * on charge les temps précédents
+   */
   onMount(async () => {
-    const res = await fetch(`${apiUrl}/temps-de-jeu`);
-    tempsDeJeu = await res.json();
+    tempsDeJeu = await api.listeTempsDeJeu();
   });
 
-  function onGagne({ detail }) {
+  /**
+   * Quand le jeu est gagné
+   */
+  async function onGagne({ detail }) {
+    const res = await api.ajouterTempsDeJeu(detail.temps_realise);
+    // si la requête a échoué
+    if (res.status != 200) {
+      // on affiche le message d'erreur
+      alert(res.statusText);
+      return;
+    }
+    tempsDeJeu = await api.listeTempsDeJeu();
     afficherTemps = true;
     jeu = null;
   }
