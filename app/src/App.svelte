@@ -1,8 +1,9 @@
 <script>
   import { onMount } from "svelte";
-  import Carte from "./components/Carte.svelte";
+  import Plateau from "./components/Plateau.svelte";
+  //import Carte from "./components/Carte.svelte";
   import TempsDeJeu from "./components/TempsDeJeu.svelte";
-  import { fruits } from "./lib/fruits";
+  //import { fruits } from "./lib/fruits";
 
   export let apiUrl;
   let afficherTemps = false;
@@ -26,9 +27,6 @@
     on:jouer={demarrerJeu}
   />
 
-  {#each fruits as _, i}
-    <Carte indexFruit={i} />
-  {/each}
-
+  <Plateau nbCasesX={7} nbCasesY={4} />
   <button on:click={() => (afficherTemps = !afficherTemps)}>Afficher</button>
 </main>
