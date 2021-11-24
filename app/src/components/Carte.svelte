@@ -1,30 +1,40 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import Fruit from "./Fruit.svelte";
   import Icone from "./Icone.svelte";
 
-  export let indexFruit;
-  export let retournee = false;
+  export let carte;
 
+  // créer un nouveau type d'évènement pour retourner une carte
+  const dispatch = createEventDispatcher();
   function retournerCarte() {
-    retournee = true;
+    if (!carte.gagnee && !carte.retournee) {
+      carte.retournee = true;
+      dispatch("retourner");
+    }
   }
 </script>
 
-<!-- svelte-ignore a11y-missing-attribute -->
-<a on:click={retournerCarte} class="carte {retournee ? 'retournee' : ''}">
-  <div class="carte-conteneur">
-    <div class="carte-avant bg-secondary text-light">
-      <div class="p-3 h-100 align-items-center d-flex">
-        <Icone nom={"question-circle"} />
+{#if carte}
+  <!-- svelte-ignore a11y-missing-attribute -->
+  <a
+    on:click={retournerCarte}
+    class="carte {carte.gagnee || carte.retournee ? 'retournee' : ''}"
+  >
+    <div class="carte-conteneur">
+      <div class="carte-avant bg-success text-light">
+        <div class="p-3 h-100 align-items-center d-flex">
+          <Icone nom={"question-circle"} />
+        </div>
+      </div>
+      <div class="carte-arriere bg-white">
+        <div class="h-100 align-items-center d-flex text-center">
+          <Fruit indexFruit={carte.indexFruit} />
+        </div>
       </div>
     </div>
-    <div class="carte-arriere bg-white">
-      <div class="h-100 align-items-center d-flex text-center">
-        <Fruit {indexFruit} />
-      </div>
-    </div>
-  </div>
-</a>
+  </a>
+{/if}
 
 <style>
   /**
