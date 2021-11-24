@@ -1,6 +1,15 @@
 <script>
+  import { createEventDispatcher } from "svelte";
+
   export let tempsDeJeu = [];
   export let afficher = false;
+
+  // créer un nouveau type d'évènement pour démarrer le jeu
+  const dispatch = createEventDispatcher();
+  function jouer() {
+    afficher = false;
+    dispatch("jouer");
+  }
 </script>
 
 <!--
@@ -46,7 +55,10 @@
         {/if}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">
+        <!--
+          Au clic, exécuter la fonction jouer
+        -->
+        <button type="button" class="btn btn-primary" on:click={jouer}>
           <!--
             Afficher "Jouer" si première partie,
             "Rejouer" sinon
