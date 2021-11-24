@@ -3,17 +3,21 @@ export default class Jeu {
     // on tire dans la liste des fruits la moitié du nombre de cartes
     const choixCartes = this.choixAleatoires(fruits, nbCartes);
     // on double la liste et on tire aléatoirement les cartes
+    // et on créé à la volée un objet pour chaque cartes
     this.cartes = this.choixAleatoires(
       choixCartes.concat(choixCartes),
       choixCartes.length * 2
-    )
-      // on créé à la volée un objet pour chaque cartes
-      .map((fruit) => ({
-        fruit,
-        indexFruit: fruits.indexOf(fruit),
-        retournee: false,
-        gagnee: false,
-      }));
+    ).map((fruit) => ({
+      fruit,
+      indexFruit: fruits.indexOf(fruit),
+      retournee: false,
+      gagnee: false,
+    }));
+
+    this.status = {
+      gagne: false,
+      perdu: false
+    }
   }
 
   /**
@@ -63,9 +67,15 @@ export default class Jeu {
   }
 
   /**
-   * Si le jeu est gagné
+   * Verifier status du jeu
    */
-  jeuGagne() {
-    return (this.cartes.filter(carte => carte.gagnee).length == this.cartes.length);
+  verifierStatut() {
+    // si le nombre de cartes gagnées correspond
+    // au nombre de cartes total
+    if (this.cartes.filter(carte => carte.gagnee).length == this.cartes.length) {
+      this.status.gagne = true;
+    }
+    // retourne le status
+    return this.status;
   }
 }

@@ -1,9 +1,12 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import { tick } from "svelte";
   import Carte from "./Carte.svelte";
 
   export let jeu;
 
+  // créer un nouveau type d'évènement pour retourner une carte
+  const dispatch = createEventDispatcher();
   /**
    * À chaque fois qu'une carte est retournée
    */
@@ -18,9 +21,15 @@
       if (cartesRetournees[0].indexFruit == cartesRetournees[1].indexFruit) {
         jeu.gagnerCarte(cartesRetournees[0].indexFruit);
       }
-      // si le jeu est gagné
-      if (jeu.jeuGagne()) {
-        alert("Jeu gagné !");
+      // si le jeu est gagné ou perdu
+      const statut = jeu.verifierStatut();
+      if (statut.gagne) {
+        dispatch("gagne", {
+          temps: 200,
+        });
+      }
+      if (statut.perdu) {
+        alert("Jeu perdu !");
       }
       // on attend pour ne pas provoquer le retournement immédiat
       await tick();

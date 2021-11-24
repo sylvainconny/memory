@@ -15,9 +15,14 @@
     tempsDeJeu = await res.json();
   });
 
+  function onGagne({ detail }) {
+    afficherTemps = true;
+    jeu = null;
+  }
+
   function demarrerJeu() {
     // démarrer le jeu
-    jeu = new Jeu(7, fruits);
+    jeu = new Jeu(2, fruits);
   }
 </script>
 
@@ -25,6 +30,6 @@
   <Menu {tempsDeJeu} bind:afficher={afficherTemps} on:jouer={demarrerJeu} />
 
   {#if jeu}
-    <Plateau bind:jeu />
+    <Plateau bind:jeu on:gagne={onGagne} />
   {/if}
 </main>
