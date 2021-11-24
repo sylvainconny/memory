@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import TempsDeJeu from "./TempsDeJeu.svelte";
+  import TempsDeJeu from "./components/TempsDeJeu.svelte";
 
   export let apiUrl;
   let afficherTemps = false;
