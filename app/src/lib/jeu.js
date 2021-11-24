@@ -1,4 +1,4 @@
-import { sleep } from "./sleep";
+import { tick } from 'svelte';
 
 export default class Jeu {
   constructor(nbCartes, fruits) {
@@ -52,7 +52,7 @@ export default class Jeu {
         this.gagnerCarte(cartesRetournees[0].indexFruit);
       }
       // on attend pour ne pas provoquer le retournement immédiat
-      await sleep(1);
+      await tick();
       // et on cache toutes les cartes
       this.cacherCartes();
     }
