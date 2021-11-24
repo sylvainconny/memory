@@ -1,9 +1,7 @@
-import { tick } from 'svelte';
-
 export default class Jeu {
   constructor(nbCartes, fruits) {
     // on tire dans la liste des fruits la moitié du nombre de cartes
-    const choixCartes = this.choixAleatoires(fruits, nbCartes / 2);
+    const choixCartes = this.choixAleatoires(fruits, nbCartes);
     // on double la liste et on tire aléatoirement les cartes
     this.cartes = this.choixAleatoires(
       choixCartes.concat(choixCartes),
@@ -38,24 +36,10 @@ export default class Jeu {
   }
 
   /**
-   * À chaque fois qu'une carte est retournée
+   * Retourne les cartes retournées
    */
-  async onRetourner() {
-    // on récupère les cartes retournées
-    const cartesRetournees = this.cartes.filter((carte) => carte.retournee);
-    // le nombre de cartes retournées
-    const nbCartesRetournees = cartesRetournees.length;
-    // s'il y a 2 cartes retournées
-    if (nbCartesRetournees == 2) {
-      // si ce sont les mêmes
-      if (cartesRetournees[0].indexFruit == cartesRetournees[1].indexFruit) {
-        this.gagnerCarte(cartesRetournees[0].indexFruit);
-      }
-      // on attend pour ne pas provoquer le retournement immédiat
-      await tick();
-      // et on cache toutes les cartes
-      this.cacherCartes();
-    }
+  cartesRetournees() {
+    return this.cartes.filter((carte) => carte.retournee);
   }
 
   /**
@@ -76,5 +60,12 @@ export default class Jeu {
     for (let i = 0; i < this.cartes.length; i++) {
       this.cartes[i].retournee = false;
     }
+  }
+
+  /**
+   * Si le jeu est gagné
+   */
+  jeuGagne() {
+    return (this.cartes.filter(carte => carte.gagnee).length == this.cartes.length);
   }
 }

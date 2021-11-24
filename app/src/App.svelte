@@ -1,12 +1,13 @@
 <script>
   import { onMount } from "svelte";
   import Plateau from "./components/Plateau.svelte";
-  //import Carte from "./components/Carte.svelte";
-  import TempsDeJeu from "./components/TempsDeJeu.svelte";
-  //import { fruits } from "./lib/fruits";
+  import Menu from "./components/Menu.svelte";
+  import { fruits } from "./lib/fruits";
+  import Jeu from "./lib/jeu";
 
   export let apiUrl;
-  let afficherTemps = false;
+  let afficherTemps = true;
+  let jeu;
   let tempsDeJeu;
 
   onMount(async () => {
@@ -16,17 +17,14 @@
 
   function demarrerJeu() {
     // démarrer le jeu
-    console.log("Démarrage du jeu");
+    jeu = new Jeu(7, fruits);
   }
 </script>
 
 <main>
-  <TempsDeJeu
-    {tempsDeJeu}
-    bind:afficher={afficherTemps}
-    on:jouer={demarrerJeu}
-  />
+  <Menu {tempsDeJeu} bind:afficher={afficherTemps} on:jouer={demarrerJeu} />
 
-  <Plateau nbCartes={28} />
-  <button on:click={() => (afficherTemps = !afficherTemps)}>Afficher</button>
+  {#if jeu}
+    <Plateau bind:jeu />
+  {/if}
 </main>
