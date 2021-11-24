@@ -7,12 +7,23 @@
 class Request
 {
 
+  private $body = [];
+
   /**
    * Récupérer un paramètre d'une requête POST
    */
   public function post(string $param, int $filtre = FILTER_DEFAULT)
   {
-    return filter_input(INPUT_POST, $param, $filtre);
+    if (!count($this->body)) {
+      try {
+        $this->body = json_decode(file_get_contents('php://input'), true);
+      } catch (Throwable $_) {
+        return null;
+      }
+    }
+    if (!count($this->body)) return null;
+    if (!array_key_exists($param, $this->body)) return null;
+    return filter_var($this->body[$param], $filtre);
   }
 
   /**
