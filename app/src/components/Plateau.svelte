@@ -3,14 +3,13 @@
   import Jeu from "../lib/jeu";
   import Carte from "./Carte.svelte";
 
-  export let nbCasesX;
-  export let nbCasesY;
+  export let nbCartes;
 
-  const jeu = new Jeu(nbCasesX * nbCasesY, fruits);
+  const jeu = new Jeu(nbCartes, fruits);
 </script>
 
 <section class="min-vh-100">
-  {#each Array(nbCasesX * nbCasesY) as _, i}
+  {#each Array(nbCartes) as _, i}
     <div>
       <Carte
         bind:carte={jeu.cartes[i]}

@@ -27,6 +27,6 @@
     on:jouer={demarrerJeu}
   />
 
-  <Plateau nbCasesX={7} nbCasesY={4} />
+  <Plateau nbCartes={28} />
   <button on:click={() => (afficherTemps = !afficherTemps)}>Afficher</button>
 </main>
