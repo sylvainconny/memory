@@ -17,19 +17,34 @@
 </script>
 
 <section class="min-vh-100">
-  {#each Array(nbCasesY) as _, i}
-    <div class="row">
-      {#each Array(nbCasesX) as _, j}
-        <div class="col">
-          <Carte indexFruit={fruits.indexOf(cases[i * nbCasesX + j])} />
-        </div>
-      {/each}
+  {#each Array(nbCasesX * nbCasesY) as _, i}
+    <div>
+      <Carte indexFruit={fruits.indexOf(cases[i])} />
     </div>
   {/each}
 </section>
 
 <style>
-  div {
-    border: 1px solid black;
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  /**
+  * Affichage tablette
+  */
+  @media (max-width: 915px) {
+    section {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  /**
+  * Affichage mobile
+  */
+  @media (max-width: 575.98px) {
+    section {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
   }
 </style>

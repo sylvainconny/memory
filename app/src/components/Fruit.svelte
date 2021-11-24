@@ -17,6 +17,7 @@
 </script>
 
 <img
+  class="mx-auto"
   src="/app/public/cards.png"
   alt={fruits[indexFruit]}
   style={`object-position: 0px ${positionFruitPourcent}%;`}
