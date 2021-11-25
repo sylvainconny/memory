@@ -48,6 +48,17 @@
     jeu = null;
   }
 
+  function onPerdu() {
+    // on personnalise le message du menu
+    messageMenu = {
+      texte: `Game Over`,
+      classe: "alert alert-danger",
+    };
+    afficherMenu = true;
+    // on supprime le jeu
+    jeu = null;
+  }
+
   function demarrerJeu() {
     // démarrer le jeu
     jeu = new Jeu(2, fruits);
@@ -63,6 +74,6 @@
   />
 
   {#if jeu}
-    <Plateau bind:jeu on:gagne={onGagne} />
+    <Plateau bind:jeu tempsTotal={10} on:gagne={onGagne} on:perdu={onPerdu} />
   {/if}
 </main>

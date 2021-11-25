@@ -1,5 +1,6 @@
 <script>
-  export let tempsRestant;
+  import { createEventDispatcher } from "svelte";
+
   export let tempsTotal;
 
   function pourcentageBg(pourcentage) {
@@ -8,7 +9,20 @@
     return "success";
   }
 
+  // créer un nouveau type d'évènement pour chrono terminé
+  const dispatch = createEventDispatcher();
+
+  let tempsRestant = tempsTotal;
   $: pourcentage = (tempsRestant / tempsTotal) * 100;
+
+  const interval = setInterval(aChaqueSeconde, 1000);
+  function aChaqueSeconde() {
+    tempsRestant--;
+    if (tempsRestant < 1) {
+      clearInterval(interval);
+      dispatch("tempsecoule");
+    }
+  }
 </script>
 
 <div class="progress h-100 rounded-0">

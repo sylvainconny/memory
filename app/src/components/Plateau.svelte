@@ -5,8 +5,9 @@
   import Chrono from "./Chrono.svelte";
 
   export let jeu;
+  export let tempsTotal;
 
-  // créer un nouveau type d'évènement pour retourner une carte
+  // créer un nouveau type d'évènement pour jeu gagné ou perdu
   const dispatch = createEventDispatcher();
   /**
    * À chaque fois qu'une carte est retournée
@@ -39,16 +40,8 @@
     }
   }
 
-  const tempsTotal = 200;
-  let tempsRestant = tempsTotal;
-  const chronoIntervalHandler = setInterval(chronoInterval, 1000);
-
-  function chronoInterval() {
-    tempsRestant--;
-    if (tempsRestant < 1) {
-      clearInterval(chronoIntervalHandler);
-      dispatch("perdu");
-    }
+  function onTempsEcoule() {
+    dispatch("perdu");
   }
 </script>
 
@@ -61,7 +54,7 @@
     {/each}
   </section>
 
-  <Chrono bind:tempsRestant {tempsTotal} />
+  <Chrono {tempsTotal} on:tempsecoule={onTempsEcoule} />
 </div>
 
 <style>
