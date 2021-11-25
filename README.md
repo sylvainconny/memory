@@ -116,3 +116,47 @@ npm run dev
   - `main.js` point d'entreée du script js une fois compilé
 - `package.json` liste des dépendances et des scripts nodejs
 - `rollup.config.js` configuration de la compilation
+
+## Déployer
+
+On déploiera cette application sur l'hébergeur [AlwaysData](https://www.alwaysdata.com/) qui a l'avantage d'offrir un accès SSH, npm et composer de préinstallé sur leurs machines et 100Mo de stockage gratuit, ce qui est largement suffisant.
+
+Un exemple est disponible ici : [memory.alwaysdata.net](https://memory.alwaysdata.net/)
+
+### Installation
+
+Après avoir créé un compte et [configuré ses clés SSH](https://help.alwaysdata.com/fr/acc%C3%A8s-distant/ssh/utiliser-des-cl%C3%A9s-ssh/), on peut se connecter au serveur en SSH et y exécuter les commandes suivantes.
+
+```bash
+rm -r www/
+git clone https://github.com/sylvainmrs/memory www
+cd www
+composer install
+cd app
+npm i
+npm run build
+```
+
+### Base de données
+
+Dans [l'administration d'AlwaysData](https://admin.alwaysdata.com/database/?type=mysql), créer une base de données pour y sauvegarder les temps de jeu, et récupérer les différentes informations nécessaires pour la partie suivante.
+
+### Configuration
+
+Dans la configuration du site, dans [l'administration d'AlwaysData](https://admin.alwaysdata.com/site/), il faut forcer le HTTPS dans l'onglet SSL et ajouter les variables d'environnnement suivantes (en remplaçant les valeurs entre crochets par les valeurs correspondant à votre site / base de données) :
+
+```env
+DB_HOST=mysql-[database-name].alwaysdata.net:3306
+DB_DATABASE=[database-name]
+DB_USER=[user]
+DB_PASSWORD=[mot de passe]
+SERVER_URL=https://[site].alwaysdata.net
+NB_CARTES=14
+TEMPS_TOTAL=200
+```
+
+NB: `NB_CARTES` et `TEMPS_TOTAL` correspondent respectivement au nombre de cartes (qui sera multiplié par deux pour obtenir les paires) et au temps pour finir le jeu.
+
+### Mise à jour
+
+Après connexion SSH au serveur, dans le dossier www, exécuter la commande `git pull`.
