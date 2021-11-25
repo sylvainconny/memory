@@ -66,21 +66,21 @@ npm run dev
 
 ### Projet
 
-- **dist** dossier contenant le code compilé
-- **public** contient les images du projet
-- **src**
-  - **components**
-    - **Carte.svelte**
-    - **Chrono.svelte**
-    - **Fruit.svelte**
-    - **Icone.svelte**
-    - **Menu.svelte**
-    - **Plateau.svelte**
-  - **lib**
-    - **api.js**
-    - **fruits.js**
-    - **jeu.js**
-  - **App.svelte**
-  - **main.js**
-- **package.json**
-- **rollup.config.js**
+- **dist** | code compilé
+- **public** | image du projet
+- **src** | code source du projet
+  - **components** | composants
+    - **Carte.svelte** | carte à retourner
+    - **Chrono.svelte** | affichage du compteur de temps
+    - **Fruit.svelte** | image des fruits
+    - **Icone.svelte** | pour gérer les icones svg
+    - **Menu.svelte** | menu avec la liste des temps, le bouton de démarrage et les messages de fin de jeu
+    - **Plateau.svelte** | plateau de jeu regroupant plusieurs composants
+  - **lib** | librairies
+    - **api.js** | classe pour les appels à l'API (back php)
+    - **fruits.js** | constantes sur les images de fruit
+    - **jeu.js** | classe qui gère l'essentiel du jeu
+  - **App.svelte** | composant princiapl
+  - **main.js** | point d'entreée du script js une fois compilé
+- **package.json** | liste des dépendances et des scripts nodejs
+- **rollup.config.js** | configuration de la compilation
