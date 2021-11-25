@@ -1,14 +1,21 @@
 {% extends "layout.html.twig" %}
+{##
+# Cette page charge simplement le script js et les styles css
+# compilés par svelte
+#}
 
 {% block styles %}
+	{# La fonction "parent" permet de récupérer le contenu du bloc #}
 	{{ parent() }}
 	<link href="/app/dist/bundle.css" rel="stylesheet"/>
 {% endblock %}
 
 {% block contenu %}
+	{# cette div#app est celle référencée dans app/src/main.js par target #}
 	<div id="app"></div>
 {% endblock %}
 
 {% block scripts %}
+	{# le script svelte compilé #}
 	<script src="/app/dist/bundle.js"></script>
 {% endblock %}
