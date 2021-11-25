@@ -1,12 +1,21 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
+  // paramètre: liste des temps de jeu
   export let tempsDeJeu = [];
+  // paramètre: afficher ou pas le menu
   export let afficher = false;
+  // paramètre: message spécial
   export let message = null;
 
   // créer un nouveau type d'évènement pour démarrer le jeu
   const dispatch = createEventDispatcher();
+
+  /**
+   * Si on appuie sur le bouton (re)jouer, on envoie
+   * un évènement au composant parent pour lancer le jeu
+   * et on cache le menu.
+   */
   function jouer() {
     afficher = false;
     dispatch("jouer");
@@ -24,6 +33,7 @@
         <h5 class="modal-title">Memory</h5>
       </div>
       <div class="modal-body">
+        <!-- Affichage du message spécial -->
         {#if message}
           <p class="display-6 text-center {message.classe}">
             {message.texte}

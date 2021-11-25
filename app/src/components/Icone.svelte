@@ -1,4 +1,9 @@
 <script>
+  /**
+   * Ce compostant permet de gérer des icones
+   * au format svg simplement
+   */
+  // paramètre: identifiant de l'icone
   export let nom;
 </script>
 

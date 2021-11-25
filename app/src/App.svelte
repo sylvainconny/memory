@@ -6,15 +6,20 @@
   import Jeu from "./lib/jeu";
   import Api from "./lib/api";
 
+  // paramètre: adresse de l'API
   export let apiUrl;
   let afficherMenu = true;
+  // message spécial du menu
   let messageMenu = {
     texte: "",
     classe: "",
   };
+  // objet de la classe Jeu
   let jeu;
+  // liste des temps de jeu chargés depuis l'API
   let tempsDeJeu;
 
+  // api pour accéder à la base de données
   const api = new Api(apiUrl);
 
   /**

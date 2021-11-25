@@ -1,6 +1,7 @@
 <script>
   import { fruits, tailleFruit, tailleImage } from "../lib/fruits";
 
+  // paramètre: index (position) du fruit choisi
   export let indexFruit;
 
   // on fait en sorte que l'index ne dépasse le nombre de fruits

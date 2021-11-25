@@ -4,8 +4,11 @@
   import Carte from "./Carte.svelte";
   import Chrono from "./Chrono.svelte";
 
+  // paramètre: object de classe Jeu
   export let jeu;
+  // paramètre: temps imparti pour finir le jeu
   export let tempsTotal;
+  // on initie le temps restant au temps total
   let tempsRestant = tempsTotal;
 
   // créer un nouveau type d'évènement pour jeu gagné ou perdu
@@ -41,7 +44,16 @@
 
   // Chrono
   jeu.demarrerChrono(function () {
+    /**
+     * Sachant que la fonction setInterval est configurée
+     * pour s'éxecuter toutes les 1000ms soit 1 seconde,
+     * on décrémente d'un, donc d'une seconde le temps restant.
+     */
     tempsRestant--;
+    /**
+     * Si on est arrivés à la fin du temps, on arrête le jeu
+     * et on indique à l'App que le jeu est perdu.
+     */
     if (tempsRestant < 1) {
       jeu.arreterChrono();
       dispatch("perdu");
@@ -51,6 +63,9 @@
 
 <div class="plateau min-vh-100">
   <section class="">
+    <!--
+      Array(n) permet de générer un tableau de n éléments
+    -->
     {#each Array(jeu.cartes.length) as _, i}
       <div>
         <Carte bind:carte={jeu.cartes[i]} on:retourner={onRetourner} />
@@ -62,6 +77,10 @@
 </div>
 
 <style>
+  /**
+  * 96% de l'écran pour les cartes
+  * 4% pour le chrono
+  */
   .plateau {
     display: grid;
     grid-template-rows: 96% 4%;

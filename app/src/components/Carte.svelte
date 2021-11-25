@@ -3,11 +3,16 @@
   import Fruit from "./Fruit.svelte";
   import Icone from "./Icone.svelte";
 
+  // paramètre: données de la carte
   export let carte;
 
   // créer un nouveau type d'évènement pour retourner une carte
   const dispatch = createEventDispatcher();
   function retournerCarte() {
+    /**
+     * Si la carte n'est ni gagnée ni déjà retournée,
+     * on la retourne et on envoie un évènement au composant parent
+     */
     if (!carte.gagnee && !carte.retournee) {
       carte.retournee = true;
       dispatch("retourner");
@@ -24,11 +29,13 @@
     <div class="carte-conteneur">
       <div class="carte-avant bg-primary text-light">
         <div class="p-3 h-100 align-items-center d-flex">
+          <!-- icone point d'interrogation -->
           <Icone nom={"question-circle"} />
         </div>
       </div>
       <div class="carte-arriere bg-white">
         <div class="h-100 align-items-center d-flex text-center">
+          <!-- image de fruit -->
           <Fruit indexFruit={carte.indexFruit} />
         </div>
       </div>
