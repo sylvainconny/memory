@@ -7,7 +7,11 @@
   import Api from "./lib/api";
 
   export let apiUrl;
-  let afficherTemps = true;
+  let afficherMenu = true;
+  let messageMenu = {
+    texte: "",
+    classe: "",
+  };
   let jeu;
   let tempsDeJeu;
 
@@ -32,8 +36,14 @@
       alert(res.statusText);
       return;
     }
+    // on recharge les temps de jeu
     tempsDeJeu = await api.listeTempsDeJeu();
-    afficherTemps = true;
+    messageMenu = {
+      texte: `C'est gagné !`,
+      classe: "alert alert-success",
+    };
+    afficherMenu = true;
+    // on supprime le jeu
     jeu = null;
   }
 
@@ -44,7 +54,12 @@
 </script>
 
 <main>
-  <Menu {tempsDeJeu} bind:afficher={afficherTemps} on:jouer={demarrerJeu} />
+  <Menu
+    {tempsDeJeu}
+    message={messageMenu}
+    bind:afficher={afficherMenu}
+    on:jouer={demarrerJeu}
+  />
 
   {#if jeu}
     <Plateau bind:jeu on:gagne={onGagne} />

@@ -3,6 +3,7 @@
 
   export let tempsDeJeu = [];
   export let afficher = false;
+  export let message = null;
 
   // créer un nouveau type d'évènement pour démarrer le jeu
   const dispatch = createEventDispatcher();
@@ -23,30 +24,37 @@
         <h5 class="modal-title">Memory</h5>
       </div>
       <div class="modal-body">
+        {#if message}
+          <p class="display-6 text-center {message.classe}">
+            {message.texte}
+          </p>
+        {/if}
         {#if tempsDeJeu.length}
           <!--
             Si tempsDeJeu > 0
             Afficher la liste des temps de jeu
           -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Temps</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!--
-                Liste des temps de jeu
-              -->
-              {#each tempsDeJeu as tps}
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
                 <tr>
-                  <td>{tps.temps_realise} secondes</td>
-                  <td>{new Date(tps.date_partie).toLocaleDateString()}</td>
+                  <th>Temps</th>
+                  <th>Date</th>
                 </tr>
-              {/each}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <!--
+                  Liste des temps de jeu
+                -->
+                {#each tempsDeJeu as tps}
+                  <tr>
+                    <td>{tps.temps_realise} secondes</td>
+                    <td>{new Date(tps.date_partie).toLocaleDateString()}</td>
+                  </tr>
+                {/each}
+              </tbody>
+            </table>
+          </div>
         {:else}
           <!--
             Sinon afficher un message
