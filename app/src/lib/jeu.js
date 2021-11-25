@@ -14,12 +14,23 @@ export default class Jeu {
       gagnee: false,
     }));
 
+    // statut du jeu
     this.status = {
       gagne: false,
       perdu: false
     }
+
+    // chrono
+    this.chrono = null;
   }
 
+  demarrerChrono(fn) {
+    this.chrono = setInterval(fn, 1000);
+  }
+
+  arreterChrono() {
+    if (this.chrono) clearInterval(this.chrono);
+  }
   /**
    * Choisir un nombre d'éléments dans une liste
    */

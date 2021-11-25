@@ -6,6 +6,7 @@
 
   export let jeu;
   export let tempsTotal;
+  let tempsRestant = tempsTotal;
 
   // créer un nouveau type d'évènement pour jeu gagné ou perdu
   const dispatch = createEventDispatcher();
@@ -26,12 +27,10 @@
       // si le jeu est gagné ou perdu
       const statut = jeu.verifierStatut();
       if (statut.gagne) {
+        jeu.arreterChrono();
         dispatch("gagne", {
-          temps_realise: 200,
+          temps_realise: tempsTotal - tempsRestant,
         });
-      }
-      if (statut.perdu) {
-        alert("Jeu perdu !");
       }
       // on attend pour ne pas provoquer le retournement immédiat
       await tick();
@@ -40,9 +39,14 @@
     }
   }
 
-  function onTempsEcoule() {
-    dispatch("perdu");
-  }
+  // Chrono
+  jeu.demarrerChrono(function () {
+    tempsRestant--;
+    if (tempsRestant < 1) {
+      jeu.arreterChrono();
+      dispatch("perdu");
+    }
+  });
 </script>
 
 <div class="plateau min-vh-100">
@@ -54,7 +58,7 @@
     {/each}
   </section>
 
-  <Chrono {tempsTotal} on:tempsecoule={onTempsEcoule} />
+  <Chrono {tempsTotal} {tempsRestant} />
 </div>
 
 <style>

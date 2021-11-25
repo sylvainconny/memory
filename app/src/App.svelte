@@ -61,7 +61,7 @@
 
   function demarrerJeu() {
     // démarrer le jeu
-    jeu = new Jeu(2, fruits);
+    jeu = new Jeu(14, fruits);
   }
 </script>
 
@@ -74,6 +74,6 @@
   />
 
   {#if jeu}
-    <Plateau bind:jeu tempsTotal={10} on:gagne={onGagne} on:perdu={onPerdu} />
+    <Plateau bind:jeu tempsTotal={200} on:gagne={onGagne} on:perdu={onPerdu} />
   {/if}
 </main>

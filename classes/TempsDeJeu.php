@@ -24,7 +24,7 @@ class TempsDeJeu
 
   public function lister()
   {
-    $liste = $this->pdo->prepare('SELECT * FROM temps_de_jeu ORDER BY temps_realise DESC;');
+    $liste = $this->pdo->prepare('SELECT * FROM temps_de_jeu ORDER BY temps_realise ASC;');
     $liste->execute();
     return $liste->fetchAll(PDO::FETCH_OBJ);
   }
