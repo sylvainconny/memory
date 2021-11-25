@@ -1,9 +1,29 @@
 # Jeu Memory
 
+## Prérequis
+
+Pour ce projet, il faut préalablement:
+
+- installer et lancer [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- installer [composer](https://getcomposer.org/)
+
 ## Installation
 
-1. Installer et lancer [Docker Desktop](https://www.docker.com/products/docker-desktop)
-2. Cloner ce dépôt
-3. Dans le terminal, dans le dossier du dépôt, exécuter la commande `docker-compose up -d` pour démarrer les serveurs PHP et MySQL sur la machine
-4. Se rendre via le navigateur à l'adresse [localhost:8000](http://localhost:8080) une première fois pour initialiser la base de données (la table tems_de_jeu)
-5. Jouer à l'adresse [localhost:8000](http://localhost:8080)
+```bash
+# Cloner le dépôt dans le dossier memory
+git clone https://github.com/sylvainmrs/memory memory
+# Se rendre dans le dossier memory
+cd memory
+# Installer les dépendances php du projet
+composer install
+# Démarrer les serveurs php et mariadb avec docker [-d optionnel]
+docker-compose up [-d]
+```
+
+## Initialisation
+
+Au démarrage du conteneur, la base de données est vide, il faut l'initialiser en se rendant via le navigateur à l'adresse [localhost:8000/init](http://localhost:8000/init)
+
+## Lancer le jeu
+
+Pour lancer le jeu, il faut se rendre via le navigateur à l'adresse [localhost:8000](http://localhost:8000)
