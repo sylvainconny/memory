@@ -22,7 +22,7 @@
     class="carte {carte.gagnee || carte.retournee ? 'retournee' : ''}"
   >
     <div class="carte-conteneur">
-      <div class="carte-avant bg-success text-light">
+      <div class="carte-avant bg-primary text-light">
         <div class="p-3 h-100 align-items-center d-flex">
           <Icone nom={"question-circle"} />
         </div>
