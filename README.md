@@ -41,6 +41,38 @@ Au démarrage du conteneur, la base de données est vide, il faut l'initialiser 
 
 Pour lancer le jeu, il faut se rendre via le navigateur à l'adresse [localhost:8000](http://localhost:8000)
 
+## Back
+
+### Twig
+
+Les différentes pages générées par le back php sont notamment écrites avec le moteur de template [twig](https://twig.symfony.com/) développé par [Symfony](https://symfony.com/). Un template permet d'écrire des pages html avec des scripts php, mais à la syntaxe simplifiée, ce qui rend le tout plus lisible. Il permet également de définir un fichier `layout.html.twig` par exemple, qui sera notre squelete HTML basique dans lequel on intégrera des _blocs_. Cela permet à d'autres fichiers twig de reprendre `layout.html.twig` en modifiant uniquement le contenu des blocs.
+
+### Structure du projet
+
+- `classes`
+  - `Request.php` gère les requêtes au serveur
+  - `Response.php` gère les réponses du serveur
+  - `Router.php` gère l'affichage des différentes pages selon la route
+  - `TempsDeJeu.php` gère la connexion à la table des temps de jeu en BDD
+- `conf`
+  - `db.php` initie la connexion à la base de données
+  - `tpl.php` initie le moteur de templates
+- `public` point d'entrée du serveur
+  - `const.php` constantes, variables d'environnement...
+  - `index.php` d'où toute la magie opère
+- `routes` les différentes pages du projet
+  - `accueil.php` charge la partie front du projet
+  - `init.php` initialise la base de données
+  - `temps-de-jeu.php` api pour que le front puisse accéder à la table des temps de jeu
+- `templates`
+  - `404.html.twig`
+  - `accueil.html.twig`
+  - `erreur.html.twig`
+  - `init.html.twig`
+  - `layout.html.twig`
+- `vendor` dépendances
+- `composer.json` liste des dépendances
+
 ## Front
 
 ### Svelte
@@ -64,7 +96,7 @@ npm run build
 npm run dev
 ```
 
-### Projet
+### Structure du projet
 
 - `dist` code compilé
 - `public` image du projet
