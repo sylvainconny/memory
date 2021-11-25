@@ -38,6 +38,7 @@
     }
     // on recharge les temps de jeu
     tempsDeJeu = await api.listeTempsDeJeu();
+    // on personnalise le message du menu
     messageMenu = {
       texte: `C'est gagné !`,
       classe: "alert alert-success",

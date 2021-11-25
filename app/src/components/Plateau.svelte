@@ -2,6 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import { tick } from "svelte";
   import Carte from "./Carte.svelte";
+  import Chrono from "./Chrono.svelte";
 
   export let jeu;
 
@@ -37,21 +38,41 @@
       jeu.cacherCartes();
     }
   }
+
+  const tempsTotal = 200;
+  let tempsRestant = tempsTotal;
+  const chronoIntervalHandler = setInterval(chronoInterval, 1000);
+
+  function chronoInterval() {
+    tempsRestant--;
+    if (tempsRestant < 1) {
+      clearInterval(chronoIntervalHandler);
+      dispatch("perdu");
+    }
+  }
 </script>
 
-<section class="min-vh-100">
-  {#each Array(jeu.cartes.length) as _, i}
-    <div>
-      <Carte bind:carte={jeu.cartes[i]} on:retourner={onRetourner} />
-    </div>
-  {/each}
-</section>
+<div class="plateau min-vh-100">
+  <section class="">
+    {#each Array(jeu.cartes.length) as _, i}
+      <div>
+        <Carte bind:carte={jeu.cartes[i]} on:retourner={onRetourner} />
+      </div>
+    {/each}
+  </section>
+
+  <Chrono bind:tempsRestant {tempsTotal} />
+</div>
 
 <style>
+  .plateau {
+    display: grid;
+    grid-template-rows: 96% 4%;
+  }
   /**
   * Plateau de jeu en grille 7 par x
   */
-  section {
+  .plateau section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
@@ -60,7 +81,7 @@
   * Affichage tablette
   */
   @media (max-width: 915px) {
-    section {
+    .plateau section {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
   }
@@ -69,7 +90,7 @@
   * Affichage mobile
   */
   @media (max-width: 575.98px) {
-    section {
+    .plateau section {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
