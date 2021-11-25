@@ -31,7 +31,7 @@ class Request
    */
   public function get(string $param, int $filtre = FILTER_DEFAULT)
   {
-    return filter_input(INPUT_GET, $param, $filtre);
+    return filter_var($_GET[$param], $filtre);
   }
 
   /**
@@ -39,7 +39,7 @@ class Request
    */
   public function server(string $param, int $filtre = FILTER_DEFAULT)
   {
-    return filter_input(INPUT_SERVER, $param, $filtre);
+    return filter_var($_SERVER[$param], $filtre);
   }
 
   /**
