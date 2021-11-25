@@ -24,5 +24,6 @@ try {
     [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']
   );
 } catch (Throwable $err) {
-  include __TEMPLATES__ . '/erreur.php';
+  echo $err->getMessage();
+  die;
 }
