@@ -47,8 +47,8 @@ services:
       DB_USER: memory
       DB_PASSWORD: m0t2p@ssef0rt
       SERVER_URL: http://localhost:8000
-      NB_CARTES: 4
-      TEMPS_TOTAL: 10
+      NB_CARTES: 14
+      TEMPS_TOTAL: 200
     networks:
       - memorysite
 networks:
