@@ -35,14 +35,6 @@ class Request
   }
 
   /**
-   * Récupérer un paramètre d'environnement
-   */
-  public function env(string $param, int $filtre = FILTER_DEFAULT)
-  {
-    return filter_input(INPUT_ENV, $param, $filtre);
-  }
-
-  /**
    * Récupérer un paramètre serveur
    */
   public function server(string $param, int $filtre = FILTER_DEFAULT)

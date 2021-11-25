@@ -5,10 +5,10 @@
  * via les variables d'environnement ici renseignées dans le
  * fichier docker-compose.yaml
  */
-define('DB_HOST', filter_input(INPUT_ENV, 'DB_HOST'));
-define('DB_DATABASE', filter_input(INPUT_ENV, 'DB_DATABASE'));
-define('DB_USER', filter_input(INPUT_ENV, 'DB_USER'));
-define('DB_PASSWORD', filter_input(INPUT_ENV, 'DB_PASSWORD'));
+define('DB_HOST', $_ENV['DB_HOST']);
+define('DB_DATABASE', $_ENV['DB_DATABASE']);
+define('DB_USER', $_ENV['DB_USER']);
+define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
 
 /**
  * Instanciation d'une variable $pdo contenant la connexion
