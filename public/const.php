@@ -10,3 +10,5 @@ define('__CLASSES__', __ROOT__ . '/classes');
 define('__ROUTES__', __ROOT__ . '/routes');
 define('__TEMPLATES__', __ROOT__ . '/templates');
 define('SERVER_URL', $_ENV['SERVER_URL']);
+define('NB_CARTES', $_ENV['NB_CARTES']);
+define('TEMPS_TOTAL', $_ENV['TEMPS_TOTAL']);

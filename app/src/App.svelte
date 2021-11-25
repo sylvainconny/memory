@@ -8,6 +8,11 @@
 
   // paramètre: adresse de l'API
   export let apiUrl;
+  // paramètres: temps imparti pour réussir le jeu
+  export let tempsTotal;
+  // paramètres: nombre de cartes
+  export let nbCartes;
+
   let afficherMenu = true;
   // message spécial du menu
   let messageMenu = {
@@ -66,7 +71,7 @@
 
   function demarrerJeu() {
     // démarrer le jeu
-    jeu = new Jeu(14, fruits);
+    jeu = new Jeu(nbCartes, fruits);
   }
 </script>
 
@@ -79,6 +84,6 @@
   />
 
   {#if jeu}
-    <Plateau bind:jeu tempsTotal={200} on:gagne={onGagne} on:perdu={onPerdu} />
+    <Plateau bind:jeu {tempsTotal} on:gagne={onGagne} on:perdu={onPerdu} />
   {/if}
 </main>

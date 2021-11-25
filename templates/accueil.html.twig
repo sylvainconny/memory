@@ -12,7 +12,7 @@
 
 {% block contenu %}
 	{# cette div#app est celle référencée dans app/src/main.js par target #}
-	<div id="app"></div>
+	<div id="app" data-api-url="{{ constant('SERVER_URL') }}" data-nb-cartes="{{ constant('NB_CARTES') }}" data-temps-total="{{ constant('TEMPS_TOTAL') }}"/>
 {% endblock %}
 
 {% block scripts %}
